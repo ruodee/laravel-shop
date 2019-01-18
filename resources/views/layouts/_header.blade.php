@@ -25,6 +25,7 @@
             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="botton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="https://iocaffcdn.phphub.org/uploads/images/201709/20/1/PtDKbASVcz.png?imageView2/1/w/60/h/60"
              alt="image" width="30px" height="30px" class="img-responsive img-circle">{{ Auth::user()->name }}</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a href="{{ route('user_addresses.index') }}" class="dropdown-item">收货地址</a>
                 <a href="#" class="dropdown-item" id="logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();">退出登录</a>
                 <form action="{{ route('logout') }}" id="logout-form" method="POST" style="display: none;">{{ csrf_field() }}</form>
             </div>
