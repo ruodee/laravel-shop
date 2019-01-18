@@ -8,6 +8,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+require('./components/SelectDistrict');
 
 /**
  * The following block of code may be used to automatically register your
