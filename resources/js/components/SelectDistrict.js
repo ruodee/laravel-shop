@@ -21,13 +21,13 @@ Vue.component('select-district', {
             districts: {}, // 地区列表
             provinceId: '', // 当前选中的省
             cityId: '', // 当前选中的市
-            distictId: '', // 当前选中的区
+            districtId: '', // 当前选中的区
         };
     },
     // 定义观察器，对应的属性变更时会触发对应的观察器函数
     watch: {
         // 当选择的省发生改变时触发
-        provincedId(newVal) {
+        provinceId(newVal) {
             if (!newVal) {
                 this.cities = {};
                 this.cityId = '';
