@@ -24,6 +24,6 @@ class UserAddress extends Model
     }
     public function getFullAddressAttribute()
     {
-        return "{$this->provice}{$this->city}{$this->district}{$this->address}";
+        return "{$this->province}{$this->city}{$this->district}{$this->address}";
     }
 }

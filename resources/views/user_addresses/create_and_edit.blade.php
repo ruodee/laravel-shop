@@ -23,10 +23,15 @@
                     {{-- 输出后端报错结束 --}}
                     {{-- inline-template 代表通过内联方式引入组件 --}}
                     <user-addresses-create-and-edit inline-template>
+                      @if($address->id)
+                      <form action="{{ route('user_addresses.update', ['user_address' => $address->id]) }}" class="form-horizontal" role="form" method="post">
+                        {{ method_field('PUT') }}
+                      @else
                     <form class="form-horizontal" role="form" action="{{ route('user_addresses.store') }}" method="post">
+                      @endif
                         {{ csrf_field() }}
                        <!-- inline-template 代表通过内联方式引入组件  -->
-                       <select-district @change="onDistrictChanged" inline-template>
+                       <select-district :init-value="{{ json_encode([$address->province, $address->city, $address->district]) }}" @change="onDistrictChanged" inline-template>
                            <div class="form-group row">
                                <label class="col-form-lable col-sm-2 text-md-right">省市区</label>
                                <div class="col-sm-3">
@@ -67,7 +72,7 @@
                        </div>
                        <div class="form-group row">
                            <label class="col-form-label text-md-right col-sm-2">姓名</label>
-                           <div class="col-sm-9"><input type="text" class="form-control" name="contact_name" value="{{ old('zip', $address->zip) }}"></div>
+                           <div class="col-sm-9"><input type="text" class="form-control" name="contact_name" value="{{ old('contact_name', $address->contact_name) }}"></div>
                        </div>
                        <div class="form-group row">
                            <label class="col-form-label text-md-right col-sm-2">电话</label>
