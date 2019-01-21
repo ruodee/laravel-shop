@@ -32,4 +32,8 @@ class UserAddressesController extends Controller
         ]));
         return redirect()->route('user_addresses.index');
     }
+    public function edit(UserAddress $user_address)
+    {
+        return view('user_addresses.create_and_edit', ['address' => $user_address]);
+    }
 }

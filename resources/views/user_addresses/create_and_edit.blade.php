@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title', '新增收货地址')
+@section('title', ($address->id ? '修改' : '新增').'收货地址')
 
 @section('content')
     <div class="row">
         <div class="col-md-10 offset-lg-1">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="text-center">新增收货地址</h2>
+                    <h2 class="text-center">{{ $address->id ? '修改' : '新增' }}收货地址</h2>
                 </div>
                 <div class="card-body">
                     {{-- 输出后端报错开始 --}}
