@@ -21,6 +21,9 @@
         <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">登录</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">注册</a></li>
         @else
+        <li class="nav-item">
+            <a href="{{ route('cart.index') }}" class="nav-link mt-1"><i class="fa fa-shopping-cart"></i></a>
+        </li>
         <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="botton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="https://iocaffcdn.phphub.org/uploads/images/201709/20/1/PtDKbASVcz.png?imageView2/1/w/60/h/60"
              alt="image" width="30px" height="30px" class="img-responsive img-circle">{{ Auth::user()->name }}</a>
