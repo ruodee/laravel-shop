@@ -225,5 +225,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+    // use order_ttl set How long time Order delay --zhangbin
+    'order_ttl' => 1800,
 
 ];
