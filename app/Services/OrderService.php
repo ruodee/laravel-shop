@@ -45,7 +45,7 @@ class OrderService
                 ]);
                 $item->product()->associate($sku->product_id);
                 $item->productSku()->associate($sku);
-                $item->save;
+                $item->save();
                 $totalAmount += $sku->price * $data['amount'];
                 if ($sku->decreaseStock($data['amount']) <= 0) {
                     throw new InvalidRequestException('该商品库存不足');
