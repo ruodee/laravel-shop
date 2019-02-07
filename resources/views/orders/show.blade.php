@@ -99,6 +99,13 @@
                                 @endif
                             </div>
                         </div>
+                        <!-- 拒绝退款理由 -->
+                        @if(isset($order->extra['refund_disagree_reason']))
+                        <div>
+                            <span>拒绝退款理由：</span>
+                            <div class="value">{{ $order->extra['refund_disagree_reason'] }}</div>
+                        </div>
+                        @endif
                        <!-- c+tab写HTML注释  -->
                        <!-- 支付按钮开始 -->
                        @if(!$order->paid_at && !$order->closed)
