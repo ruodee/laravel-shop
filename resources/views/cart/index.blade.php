@@ -44,6 +44,11 @@
                     </tbody>
                 </table>
                 <!--  开始 -->
+                @if($cartItems->isEmpty())
+                <div>
+                    <p>购物车空空如也，赶快去挑选商品吧~</p>
+                </div>
+                @else
                 <div>
                     <form class="form-horizontal" role="form" id="order-form">
                         <div class="form-group row">
@@ -63,6 +68,19 @@
                                 <textarea name="remark" id="" cols="30" rows="3" class="form-control"></textarea>
                             </div>
                         </div>
+                        <!-- 优惠码开始 -->
+                        <div class="form-group row">
+                            <label for="" class="col-form-label col-sm-3 text-md-right">优惠码</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="coupon_code">
+                                <span class="form-text text-muted" id="coupon_desc"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <button id="btn-check-coupon" class="btn btn-success" type="button">检查</button>
+                                <button class="btn btn-danger" id="btn-cancel-coupon" type="button" style="display:none;">检查</button>
+                            </div>
+                        </div>
+                        <!-- 优惠码结束 -->
                         <div class="form-group">
                             <div class="offset-sm-3 col-sm-3"><button class="btn btn-primary btn-create-order" type="button">提交订单</button>
                             </div>
@@ -70,6 +88,7 @@
                     </form>
                 </div>
                 <!-- 结束 -->
+                @endif
             </div>
         </div>
     </div>
@@ -165,6 +184,43 @@
                         swal('系统错误', '', 'error');
                     }
                 });
+        });
+
+        // 检查优惠码的按钮点击事件
+        $('#btn-check-coupon').click(function () {
+            // 获取用户输入的优惠码
+            var code = $('input[name=coupon_code]').val();
+            // 如果没有输入则弹框提示
+            if(!code) {
+                swal('请输入优惠码', '', 'warning');
+                return;
+            }
+            // 调用检查接口
+            axios.get('/coupon_codes/' + encodeURIComponent(code))
+                .then(function (response) { // then 方法的第一个参数是回调，请求成功时会被调用
+                    $('#coupon_desc').text(response.data.description); // 输出优惠信息
+                    $('input[name=coupon_code]').prop('readonly', true); // 禁用输入框
+                    $('#btn-cancel-coupon').show(); // 显示取消按钮
+                    $('#btn-check-coupon').hide(); // 隐藏检查按钮
+                }, function (error) {
+                    // 如果返回码是 404 ， 说明优惠券不存在
+                    if(error.response.status === 404) {
+                        swal('优惠码不存在', '', 'error');
+                    } else if(error.response.status === 403) {
+                        // 如果返回码是 403 ，说明有其他条件不满足
+                        swal(error.response.data.msg, '', 'error');
+                    } else {
+                        // 其他错误
+                        swal('系统内部错误', '', 'error');
+                    }
+                });
+        });
+        // 隐藏 取消 按钮点击事件
+        $('#btn-cancel-coupon').click(function () {
+            $('#coupon_desc').text(''); // 隐藏优惠信息
+            $('input[name=coupon_code]').prop('readonly', false); // 启用输入框
+            $('#btn-cancel-coupon').hide(); // 隐藏取消按钮
+            $('#btn-check-coupon').show(); // 显示 检查 按钮
         });
     });
 </script>
