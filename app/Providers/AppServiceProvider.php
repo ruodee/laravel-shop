@@ -15,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // 当 Laravel 渲染 products.index 和 products.show 模板时，就会使用 CategoryTreeComposer这个来注入类目
+        // 同时 Laravel 还支持通配符，例如 product.* 即代表当渲染 products 目录下的模板时都执行这个 ViewComposer
+        \View::composer(['products.index', 'products.show'], \App\Http\ViewComposers\CategoryTreeComposer::class);
     }
 
     /**

@@ -67,8 +67,8 @@ class ProductsController extends Controller
             ],
             // 等价于 isset($category) ? $category : null
             'category'  => $category ?? null,
-            // 将类目树传递给模板文件
-            'categoryTree' => $categoryService->getCategoryTree(),
+            // // 将类目树传递给模板文件
+            // 'categoryTree' => $categoryService->getCategoryTree(),
              ]);
     }
     public function show(Product $product, Request $request)
