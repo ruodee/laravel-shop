@@ -34,6 +34,7 @@ class UserAddressesController extends Controller
     }
     public function edit(UserAddress $user_address)
     {
+        // dd($user_address->full_address);
         $this->authorize('own', $user_address);
         return view('user_addresses.create_and_edit', ['address' => $user_address]);
     }

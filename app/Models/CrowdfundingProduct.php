@@ -17,7 +17,7 @@ class CrowdfundingProduct extends Model
         self::STATUS_FAIL       => '众筹失败',
     ];
 
-    protected $fillable = ['total_amount', 'target_amount', 'user_count', 'status', 'end_at'];
+    protected $fillable = ['total_amount', 'target_amount', 'user_amount', 'status', 'end_at'];
     // end_at 会自动转为 Carbon 类型
     protected $dates = ['end_at'];
     // 不需要 created_at 和 updated_at 字段
