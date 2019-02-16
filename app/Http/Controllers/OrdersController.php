@@ -141,9 +141,9 @@ class OrdersController extends Controller
     public function crowdfunding(CrowdFundingOrderRequest $request, OrderService $orderService)
     {
         $user       = $request->user();
-        $sku        = ProductSku::find($requst->input('sku_id'));
+        $sku        = ProductSku::find($request->input('sku_id'));
         $address    = UserAddress::find($request->input('address_id'));
-        $amont      = $request->input('amount');
+        $amount      = $request->input('amount');
 
         return $orderService->crowdfunding($user, $address, $sku, $amount);
     }

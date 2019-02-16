@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Models\ProductSku;
 use Illuminate\Validation\Rule;
 
-class CrowdFundingOrderRequest extends FormRequest
+class CrowdFundingOrderRequest extends Request
 {
     /**
      * Get the validation rules that apply to the request.

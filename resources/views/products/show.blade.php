@@ -225,6 +225,7 @@
             }
             // 把用户的收货地址以 JSON 的形式放入页面， 赋值给 addresses 变量
             var addresses = {!! json_encode(Auth::check() ? Auth::user()->addresses : []) !!};
+            console.log(addresses);
             // 使用 jQuery 动态创建一个表单
             var $form = $('<form></form>');
             // 表单中添加一个收获地址的下拉框

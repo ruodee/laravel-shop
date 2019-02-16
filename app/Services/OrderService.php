@@ -92,7 +92,7 @@ class OrderService
         // 开启事务
         $order = \DB::transaction(function () use ($amount, $sku, $user, $address) {
             // 更新地址最后使用时间
-            $address->update(['last_used_at' => 'Carbon::now()']);
+            $address->update(['last_used_at' => Carbon::now()]);
             // 创建一个订单
             $order = new Order([
                 'address'       => [ // 将地址信息放入订单中
