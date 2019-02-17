@@ -227,5 +227,6 @@ return [
     ],
     // use order_ttl set How long time Order delay --zhangbin
     'order_ttl' => 1800,
+    'ngrok_url' => env('NGROK_URL'),
 
 ];
