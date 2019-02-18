@@ -52,7 +52,7 @@
                     <!-- 加上这个判断条件，判断退款状态 -->
                     @if($order->refund_status !== \App\Models\Order::REFUND_STATUS_SUCCESS &&
                         ($order->type !== \App\Models\Order::TYPE_CROWDFUNDING ||
-                            $order->items[0]->product->crowdfunding->status === \App\Models\Crowdfunding::STATUS_SUCCESS))
+                            $order->items[0]->product->crowdfunding->status === \App\Models\CrowdfundingProduct::STATUS_SUCCESS))
                         <tr>
                             <td colspan="4">
                                 <form action="{{ route('admin.orders.ship', [$order->id]) }}" class="form-inline" method="post">

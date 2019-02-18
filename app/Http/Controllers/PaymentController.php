@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\OrderPaid;
 use Carbon\Carbon;
 use App\Models\Order;
 use App\Exceptions\InvalidRequestException;
