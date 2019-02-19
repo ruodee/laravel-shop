@@ -19,7 +19,7 @@ class CreateCrowdfundingProductsTable extends Migration
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->decimal('target_amount', 10, 2);
             $table->decimal('total_amount', 10, 2)->default(0);
-            $table->unsignedInteger('user_amount')->default(0);
+            $table->unsignedInteger('user_count')->default(0);
             $table->dateTime('end_at');
             $table->string('status')->default(\App\Models\CrowdfundingProduct::STATUS_FUNDING);
         });

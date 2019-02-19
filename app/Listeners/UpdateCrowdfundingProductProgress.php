@@ -35,7 +35,7 @@ class UpdateCrowdfundingProductProgress implements ShouldQueue
 
         $crowdfunding->update([
             'total_amount' => $data->total_amount,
-            'user_amount'   => $data->user_count,
+            'user_count'   => $data->user_count,
         ]);
     }
 }
