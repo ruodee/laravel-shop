@@ -50,7 +50,7 @@ class FinishCrowdfunding extends Command
             ->get()
             ->each(function (CrowdfundingProduct $crowdfunding) {
                 // 如果众筹目标金额大于实际众筹金额
-                if ($crowdfunding->target_amount > $crwodfunding->total_amount) {
+                if ($crowdfunding->target_amount > $crowdfunding->total_amount) {
                     // 调用众筹失败逻辑
                     $this->crowdfundingFailed($crowdfunding);
                 } else {
@@ -59,7 +59,13 @@ class FinishCrowdfunding extends Command
                 }
             });
     }
-
+    protected function crowdfundingSucceed(CrowdfundingProduct $crowdfunding)
+    {
+        // 只需要将众筹状态改为众筹成功即可
+        $crowdfunding->update([
+            'status' => CrowdfundingProduct::STATUS_SUCCESS,
+        ]);
+    }
     protected function crowdfundingFailed(CrowdfundingProduct $crowdfunding)
     {
         // 将众筹状态改为众筹失败
