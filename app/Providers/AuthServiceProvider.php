@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Installment;
+use App\Policies\InstallmentPolicy;
 use App\Models\UserAddress;
 use App\Policies\UserAddressPolicy;
 use App\Models\Order;
@@ -19,6 +21,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         UserAddress::class => UserAddressPolicy::class,
         Order::class       => OrderPolicy::class,
+        Installment::class => InstallmentPolicy::class,
     ];
 
     /**
