@@ -19,6 +19,7 @@ $factory->define(App\Models\Product::class, function (Faker $faker) {
     $category = \App\Models\Category::query()->where('is_directory', false)->inRandomOrder()->first();
     return [
         'title'         => $faker->word,
+        'long_title'    => $faker->word,
         'description'   => $faker->sentence,
         'image'         => $image,
         'on_sale'       => true,
