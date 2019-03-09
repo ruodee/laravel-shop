@@ -128,6 +128,33 @@ class DDRProductsSeeder extends Seeder
                 ],
             ],
         ];
-        // 查找名为 『
+        // 查找名为 『内存』 的商品类目
+        $category = Category::where('name', '内存')->first();
+
+        // 遍历上面的商品数据
+        foreach ($productData as $data) {
+            // 创建一个新商品
+            $product = new Product(array_merge(array_only($data, [
+                'title',
+                'long_title',
+                'description',
+                'image',
+                'price',
+            ]), [
+                'on_sale' => true,
+                'rating'  => 5,
+            ]));
+            $product->category()->associate($category);
+            $product->save();
+
+            // 遍历商品数据中的 SKU 字段
+            foreach ($data['skus'] as $sku) {
+                $product->skus()->create(array_merge($sku, ['stock' => 999]));
+            }
+            // 遍历商品数据中的 properties;
+            foreach ($data['properties'] as $attribute) {
+                $product->properties()->create($attribute);
+            }
+        }
     }
 }
